@@ -7,5 +7,8 @@ module.exports = {
         data: `@import "@/styles/styles.scss";`
       }
     }
-  }
+  },
+  publicPath: process.env.NODE_ENV === 'production'
+      ? '/vue-test/dist/'
+      : '/'
 };
