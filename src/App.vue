@@ -1,26 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+        <Header :isLogged="isLogged"></Header>
+    </div>
+    <div v-if="!isLogged">
+        <Main
+            :toggleIsLogged="toggleIsLogged"
+        ></Main>
+    </div>
+    <div v-else>
+        <List
+            :toggleIsLogged="toggleIsLogged"
+        ></List>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header';
+import Main from './components/Main';
+import List from './components/List'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Header,
+    Main,
+    List
+  },
+  data () {
+    return {
+      isLogged: false
+    }
+  },
+  methods: {
+    toggleIsLogged() {
+      this.isLogged = !this.isLogged
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+
+
